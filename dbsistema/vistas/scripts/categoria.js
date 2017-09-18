@@ -36,7 +36,7 @@ function mostrarform(flag) {
 
 
 
-function calcelarform() {
+function cancelarform() {
     limpiar();
     mostrarform(false);
 }
