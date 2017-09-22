@@ -24,7 +24,7 @@ require 'header.php';
                             <th>Categoria</th>
                             <th>Codigo</th>
                             <th>Stpck</th>
-                            <th>Imagem</th>
+                            <th>Imagen</th>
                             <th>Estado</th>
                             </thead>
                             <tbody>                            
@@ -35,7 +35,7 @@ require 'header.php';
                             <th>Categoria</th>
                             <th>Codigo</th>
                             <th>Stpck</th>
-                            <th>Imagem</th>
+                            <th>Imagen</th>
                             <th>Estado</th>
                             </tfoot>
                         </table>
@@ -51,7 +51,7 @@ require 'header.php';
                             
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label>Categoria:</label>
-                                <select id="idcategoria" name="idcategoria" class="form-control" required></select>
+                                <select id="idcategoria" name="idcategoria" class="form-control selectpicker" data-live-search="true" required></select>
                             </div>
 
                             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">

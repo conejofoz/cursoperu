@@ -10,6 +10,13 @@ function init() {
     $("#formulario").on("submit", function (e) {
         guardaryeditar(e);
     })
+    
+    
+    //Cargamos los itens al select categoria
+    $.post("../ajax/articulo.php?op=selectCategoria", function(r){
+       $("#idcategoria").html(r);
+       $('#idcategoria').selectpicker('refresh');
+    });
 }
 
 

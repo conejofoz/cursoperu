@@ -9,9 +9,9 @@ Class Articulo{
     }
     
     //Implementamos um medoto para insertar registros
-    public function insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagem){
-        $sql = "INSERT INTO articulo (idcategoria, $codigo, nombre, stock, descripcion,condicion, imagem) "
-                . "VALUES ('$idcategoria', '$codigo', '$nombre', '$stock', '$descripcion', '$imagem', '1')";
+    public function insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen){
+        $sql = "INSERT INTO articulo (idcategoria, codigo, nombre, stock, descripcion, condicion, imagen) "
+                . "VALUES ('$idcategoria', '$codigo', '$nombre', '$stock', '$descripcion', '1','$imagen')";
         return ejecutarConsulta($sql);
     }
     
@@ -42,7 +42,18 @@ Class Articulo{
     }
     //Implementar un metodo para listar los registros
     public function listar(){
-        $sql="SELECT a.idarticulo, a.idcategoria, c.nombre as categoria, a.codigo,a.nombre, a.stock, a.descripcion, a.imagem, a.condicion FROM articulo a INNER JOIN categoria c on a.idcategoria=c.idcategoria";
+        $sql="SELECT "
+                . "a.idarticulo, "
+                . "a.idcategoria, "
+                . "c.nombre as categoria, "
+                . "a.codigo, "
+                . "a.nombre, "
+                . "a.stock, "
+                . "a.descripcion, "
+                . "a.imagen, "
+                . "a.condicion "
+                . "FROM articulo a "
+                . "INNER JOIN categoria c on a.idcategoria=c.idcategoria";
         return ejecutarConsulta($sql);
     }
     

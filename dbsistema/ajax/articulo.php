@@ -10,23 +10,23 @@ $codigo = isset($_POST["codigo"]) ? limpiarCadena($_POST["codigo"]) : "";
 $nombre = isset($_POST["nombre"]) ? limpiarCadena($_POST["nombre"]) : "";
 $stock = isset($_POST["stock"]) ? limpiarCadena($_POST["stock"]) : "";
 $descripcion = isset($_POST["descripcion"]) ? limpiarCadena($_POST["descripcion"]) : "";
-$imagem = isset($_POST["imagem"]) ? limpiarCadena($_POST["imagem"]) : "";
+$imagen = isset($_POST["imagen"]) ? limpiarCadena($_POST["imagen"]) : "";
 
 switch ($_GET["op"]) {
     case 'guardaryeditar':
         
-        if(!file_exists($_FILES['imagem']['tmp_name']) || !is_uploaded_file($_FILES['imagem']['tmp_name'])){
-            $imagem="";
+        if(!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])){
+            $imagen="";
         } else {
-            $ext = explode(".", $_FILES['imagem']['name']);
-            if ($_FILES['imagem']['type'] == "image/jpg" || $_FILES['imagem']['type'] == "image/jpeg" || $_FILES['imagem']['type'] == "image/png"){
-                $imagem = round(microtime(true)) . '.' . end($ext);
-                move_uploaded_file($_FILES['imagem']['tmp_name'], '../files/articulos/' . $imagem);
+            $ext = explode(".", $_FILES['imagen']['name']);
+            if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png"){
+                $imagen = round(microtime(true)) . '.' . end($ext);
+                move_uploaded_file($_FILES['imagen']['tmp_name'], '../files/articulos/' . $imagen);
             }
         }
         
         if(empty($idarticulo)){
-            $rspta=$articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagem);
+            $rspta=$articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Articulo registrado" : "Articulo no se pudo registrar";
         } else {
             $rspta=$articulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagem);
@@ -79,4 +79,18 @@ switch ($_GET["op"]) {
         echo json_encode($results);
 
         break;
+        
+        
+    case "selectCategoria":
+        require_once '../modelos/Categoria.php';
+        $categoria = new Categoria();
+        
+        $rspta = $categoria->select();
+        
+        while ($reg = $rspta->fetch_object()){
+            echo '<option value='. $reg->idcategoria . '>' . $reg->nombre . '</option>';
+        }
+        
+        break;
+        
 }
