@@ -17,8 +17,8 @@ Class Articulo{
     
     
     //Implementamos um metodo para editar registros
-    public function editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagem){
-        $sql="UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo', nombre='$nombre', stock='$stock', descripcion='$descripcion', imagem='$imagem' WHERE idarticulo='$idarticulo'";
+    public function editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen){
+        $sql="UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo', nombre='$nombre', stock='$stock', descripcion='$descripcion', imagen='$imagen' WHERE idarticulo='$idarticulo'";
         return ejecutarConsulta($sql);
     }
     
@@ -37,7 +37,7 @@ Class Articulo{
     
     //Implementar un metodo para mostrar los datos de un registro a modificar
     public function mostrar($idarticulo){
-        $sql="SELECT * FROM articulo WHERE idcategoria='$idarticulo'";
+        $sql="SELECT * FROM articulo WHERE idarticulo='$idarticulo'";
         return ejecutarConsultaSimpleFila($sql);
     }
     //Implementar un metodo para listar los registros

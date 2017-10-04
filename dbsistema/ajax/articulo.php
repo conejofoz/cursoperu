@@ -16,7 +16,7 @@ switch ($_GET["op"]) {
     case 'guardaryeditar':
         
         if(!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])){
-            $imagen="";
+            $imagen=$_POST["imagenactual"];
         } else {
             $ext = explode(".", $_FILES['imagen']['name']);
             if ($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png"){
@@ -29,7 +29,7 @@ switch ($_GET["op"]) {
             $rspta=$articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Articulo registrado" : "Articulo no se pudo registrar";
         } else {
-            $rspta=$articulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagem);
+            $rspta=$articulo->editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);
             echo $rspta ? "Articulo actualizado" : "Articulo no se pudo actualizar";
         }
 
@@ -65,7 +65,7 @@ switch ($_GET["op"]) {
                 "2"=>$reg->categoria,
                 "3"=>$reg->codigo,
                 "4"=>$reg->stock,
-                "5"=>"<img src='../files/articulos/".$reg->imagem." ' height='50px' width='50px' >",
+                "5"=>"<img src='../files/articulos/".$reg->imagen." ' height='50px' width='50px' >",
                 "6"=>($reg->condicion)?'<span class="label bg-green">Activado</span>':
                 '<span class="label bg-red">Desactivado</span>'
             );
@@ -82,7 +82,7 @@ switch ($_GET["op"]) {
         
         
     case "selectCategoria":
-        require_once '../modelos/Categoria.php';
+        require_once "../modelos/Categoria.php";
         $categoria = new Categoria();
         
         $rspta = $categoria->select();
