@@ -27,6 +27,11 @@ function limpiar() {
     $("#nombre").val("");
     $("#descripcion").val("");
     $("#stock").val("");
+    $("#imagenmuestra").attr("src","");
+    $("#imagenactual").val("");
+    $("#imagen").val(""); //eu arrumei esse q atualizava o proximo com a imagen do anterior
+    $("#print").hide();
+    $("#idarticulo").val("");
 }
 
 
@@ -36,10 +41,12 @@ function mostrarform(flag) {
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
+        $("#btnagregar").hide();
 
     } else {
         $("#listadoregistros").show();
         $("#formularioregistros").hide();
+        $("#btnagregar").show();
 
     }
 }
@@ -117,7 +124,7 @@ function mostrar(idarticulo){
        $("#descripcion").val(data.descripcion);
        $("#imagenmuestra").show();
        $("#imagenmuestra").attr("src", "../files/articulos/"+data.imagen);
-       $("#imagenatual").val(data.imagen);
+       $("#imagenactual").val(data.imagen);
        $("#idarticulo").val(data.idarticulo);
        generarbarcode();
     })
@@ -152,6 +159,7 @@ function activar(idarticulo){
 function generarbarcode(){
     codigo=$("#codigo").val();
     JsBarcode("#barcode", codigo);
+    $("#print").show();
 }
 
 
