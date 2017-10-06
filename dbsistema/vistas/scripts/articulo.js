@@ -142,6 +142,9 @@ function desactivar(idarticulo){
         }
     })
 }
+
+
+
 function activar(idarticulo){
     bootbox.confirm("Deseja activar el articulo?", function(result){
         if(result){
