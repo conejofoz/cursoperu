@@ -11,7 +11,7 @@ Class Persona{
     //Implementamos um medoto para insertar registros
     public function insertar($tipo_persona, $nombre, $tipo_documento, $num_documento, $direccion, $telefono, $email){
         $sql = "INSERT INTO persona (tipo_persona, nombre, tipo_documento, num_documento, direccion, telefono, email) "
-                . "VALUES ('$tipo_persona','$nombre', '$tipo_documento', '$num_documento', '$direccion', '$telefono', '$email', '1')";
+                . "VALUES ('$tipo_persona','$nombre', '$tipo_documento', '$num_documento', '$direccion', '$telefono', '$email')";
         return ejecutarConsulta($sql);
     }
     
@@ -44,7 +44,7 @@ Class Persona{
     }
     //Implementar un metodo para listar los registros
     public function listarp(){
-        $sql="SELECT * FROM persona WHERE tipo_persona='Provedor'";
+        $sql="SELECT * FROM persona WHERE tipo_persona='Proveedor'";
         return ejecutarConsulta($sql);
     }
     public function listarc(){
