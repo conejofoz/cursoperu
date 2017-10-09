@@ -10,7 +10,13 @@ function init() {
     $("#formulario").on("submit", function (e) {
         guardaryeditar(e);
     })
+    
     $("#imagenmuestra").hide();
+    
+    //mostramos los permisos
+    $.post("../ajax/usuario.php?op=permisos&id=", function(r){
+       $("#permisos").html(r); 
+    });
 }
 
 
@@ -124,7 +130,11 @@ function mostrar(idusuario){
     $("#imagenmuestra").attr("src","../files/usuarios/"+data.imagen);
     $("#imagenactual").val(data.imagen);
     $("#idusuario").val(data.idusuario);
-    })
+    });
+    
+    $.post("../ajax/usuario.php?op=permisos&id="+idusuario, function(r){
+       $("#permisos").html(r); 
+    });
 }
 
 

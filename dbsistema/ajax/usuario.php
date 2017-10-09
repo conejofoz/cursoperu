@@ -33,10 +33,10 @@ switch ($_GET["op"]) {
         $clavehash= hash("SHA256", $clave);
         
         if(empty($idusuario)){
-            $rspta=$usuario->insertar($nombre, $tipo_documento,$num_documento,$direccion,$telefono,$email,$login,$clavehash,$imagen);
+            $rspta=$usuario->insertar($nombre, $tipo_documento,$num_documento,$direccion,$telefono,$email,$login,$clavehash,$imagen, $_POST['permiso']);
             echo $rspta ? "Usuario registrado" : "Usuario no se pudo registrar";
         } else {
-            $rspta=$usuario->editar($idusuario, $nombre, $tipo_documento,$num_documento,$direccion,$telefono,$email,$login,$clavehash,$imagen);
+            $rspta=$usuario->editar($idusuario, $nombre, $tipo_documento,$num_documento,$direccion,$telefono,$email,$login,$clavehash,$imagen, $_POST['permiso']);
             echo $rspta ? "Usuario actualizado" : "Usuario no se pudo actualizar";
         }
 
@@ -87,6 +87,32 @@ switch ($_GET["op"]) {
         );
         echo json_encode($results);
 
+        break;
+        
+        
+    case 'permisos':
+        //obtenemos todos los permisos de la tabla permisos
+        require_once '../modelos/Permiso.php';
+        $permiso = new Permiso();
+        $rspta = $permiso->listar();
+        
+        
+        
+        //obetner los permisos asignados al usuario
+        $id=$_GET['id'];
+        $marcados = $usuario->listamarcados($id);
+        $valores=array();
+        //almacenar los permisos asignados al usuario en el array
+        while ($per = $marcados->fetch_object()){
+            array_push($valores, $per->idpermiso);
+        }
+        
+        //mostramos la lista de permisos en la vista y si estan o no marcados
+        while ($reg = $rspta->fetch_object()){
+            $sw= in_array($reg->idpermiso, $valores)?'checked':'';
+            echo '<li> <input type="checkbox" '.$sw.' name="permiso[]" value"'.$reg->idpermiso.'">'.$reg->nombre.' </li>';
+        }
+        
         break;
         
         
