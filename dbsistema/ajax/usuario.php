@@ -116,7 +116,30 @@ switch ($_GET["op"]) {
         //while ($reg = $rspta->fetch_object()) {
         //    $sw = in_array($reg->idpermiso, $valores) ? 'checked' : '';
         //    echo '<li> <input type="checkbox" ' . $sw . '  name="permiso[]" value="' . $reg->idpermiso . '">' . $reg->nombre . '</li>';
-       // }
+        // }
+
+        break;
+
+
+    case 'verificar':
+        $logina = $_POST['logina'];
+        $clavea = $_POST['clavea'];
+
+        //hash sha256 en la contrasenha
+        $clavehash = hash("SHA256", $clavea);
+
+        $rspta = $usuario->verificar($logina, $clavehash);
+
+        $fetch = $rspta->fetch_object();
+
+        if (isset($fetch)) {
+            //declaramos las variables de sesion
+            $_SESSION['idusuario']=$fetch->idusuario;
+            $_SESSION['nombre']=$fetch->nombre;
+            $_SESSION['imagen']=$fetch->imagen;
+            $_SESSION['login']=$fetch->login;
+        }
+        echo json_encode($fetch);
 
         break;
 }
