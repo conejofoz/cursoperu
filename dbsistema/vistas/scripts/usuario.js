@@ -10,12 +10,12 @@ function init() {
     $("#formulario").on("submit", function (e) {
         guardaryeditar(e);
     })
-    
+
     $("#imagenmuestra").hide();
-    
+
     //mostramos los permisos
-    $.post("../ajax/usuario.php?op=permisos&id=", function(r){
-       $("#permisos").html(r); 
+    $.post("../ajax/usuario.php?op=permisos&id=", function (r) {
+        $("#permisos").html(r);
     });
 }
 
@@ -29,7 +29,7 @@ function limpiar() {
     $("#cargo").val("");
     $("#login").val("");
     $("#clave").val("");
-    $("#imagenmuestra").attr("src","");
+    $("#imagenmuestra").attr("src", "");
     $("#imagenactual").val("");
     $("#idusuario").val("");
 }
@@ -111,54 +111,54 @@ function guardaryeditar(e) {
 
 
 
-function mostrar(idusuario){
-    $.post("../ajax/usuario.php?op=mostrar",{idusuario:idusuario},function(data, status){
-       data = JSON.parse(data);
-       mostrarform(true);
-       
-    $("#nombre").val(data.nombre);
-    $("#tipo_documento").val(data.tipo_documento);
-    $("#num_documento").selectpicker('refresh');
-    $("#num_documento").val(data.num_documento);
-    $("#direccion").val(data.direction);
-    $("#telefono").val(data.telefono);
-    $("#email").val(data.email);
-    $("#cargo").val(data.cargo);
-    $("#login").val(data.login);
-    $("#clave").val(data.clave);
-    $("#imagenmuestra").show();
-    $("#imagenmuestra").attr("src","../files/usuarios/"+data.imagen);
-    $("#imagenactual").val(data.imagen);
-    $("#idusuario").val(data.idusuario);
+function mostrar(idusuario) {
+    $.post("../ajax/usuario.php?op=mostrar", {idusuario: idusuario}, function (data, status) {
+        data = JSON.parse(data);
+        mostrarform(true);
+
+        $("#nombre").val(data.nombre);
+        $("#tipo_documento").val(data.tipo_documento);
+        $("#num_documento").selectpicker('refresh');
+        $("#num_documento").val(data.num_documento);
+        $("#direccion").val(data.direction);
+        $("#telefono").val(data.telefono);
+        $("#email").val(data.email);
+        $("#cargo").val(data.cargo);
+        $("#login").val(data.login);
+        $("#clave").val(data.clave);
+        $("#imagenmuestra").show();
+        $("#imagenmuestra").attr("src", "../files/usuarios/" + data.imagen);
+        $("#imagenactual").val(data.imagen);
+        $("#idusuario").val(data.idusuario);
     });
-    
-    $.post("../ajax/usuario.php?op=permisos&id="+idusuario, function(r){
-       $("#permisos").html(r); 
+
+    $.post("../ajax/usuario.php?op=permisos&id=" + idusuario, function (r) {
+        $("#permisos").html(r);
     });
 }
 
 
 
-function desactivar(idusuario){
-    bootbox.confirm("Deseja desactivar el usuario?", function(result){
-        if(result){
-           $.post("../ajax/usuario.php?op=desactivar",{idusuario:idusuario},function(e){
-              bootbox.alert(e);
-              tabla.ajax.reload();
-           });
+function desactivar(idusuario) {
+    bootbox.confirm("Deseja desactivar el usuario?", function (result) {
+        if (result) {
+            $.post("../ajax/usuario.php?op=desactivar", {idusuario: idusuario}, function (e) {
+                bootbox.alert(e);
+                tabla.ajax.reload();
+            });
         }
     })
 }
 
 
 
-function activar(idusuario){
-    bootbox.confirm("Deseja activar el usuario?", function(result){
-        if(result){
-           $.post("../ajax/usuario.php?op=activar",{idusuario:idusuario},function(e){
-              bootbox.alert(e);
-              tabla.ajax.reload();
-           });
+function activar(idusuario) {
+    bootbox.confirm("Deseja activar el usuario?", function (result) {
+        if (result) {
+            $.post("../ajax/usuario.php?op=activar", {idusuario: idusuario}, function (e) {
+                bootbox.alert(e);
+                tabla.ajax.reload();
+            });
         }
     })
 }
