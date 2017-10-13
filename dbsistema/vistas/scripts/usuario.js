@@ -23,6 +23,7 @@ function init() {
 function limpiar() {
     $("#nombre").val("");
     $("#num_documento").val("");
+    $("#tipo_documento").val("");
     $("#direccion").val("");
     $("#telefono").val("");
     $("#email").val("");
@@ -118,7 +119,7 @@ function mostrar(idusuario) {
 
         $("#nombre").val(data.nombre);
         $("#tipo_documento").val(data.tipo_documento);
-        $("#num_documento").selectpicker('refresh');
+        $("#tipo_documento").selectpicker('refresh');
         $("#num_documento").val(data.num_documento);
         $("#direccion").val(data.direction);
         $("#telefono").val(data.telefono);

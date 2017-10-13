@@ -6,7 +6,7 @@ $usuario = new Usuario();
 
 $idusuario = isset($_POST["idusuario"]) ? limpiarCadena($_POST["idusuario"]) : "";
 $nombre = isset($_POST["nombre"]) ? limpiarCadena($_POST["nombre"]) : "";
-$tipo_documento = isset($_POST[""]) ? limpiarCadena($_POST[""]) : "";
+$tipo_documento = isset($_POST["tipo_documento"]) ? limpiarCadena($_POST["tipo_documento"]) : "";
 $num_documento = isset($_POST["num_documento"]) ? limpiarCadena($_POST["num_documento"]) : "";
 $direccion = isset($_POST["direccion"]) ? limpiarCadena($_POST["direccion"]) : "";
 $telefono = isset($_POST["telefono"]) ? limpiarCadena($_POST["telefono"]) : "";
