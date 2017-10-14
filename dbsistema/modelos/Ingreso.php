@@ -38,13 +38,13 @@ Class Ingreso {
 
     //Implementar un metodo para mostrar los datos de un registro a modificar
     public function mostrar($idingreso) {
-        $sql = "SELECT i.idingreso, DATA(i.fecha_hora) as fecha, i.idprovedor, p.nombre as provedor, u.idusuario, u.nombre as usuario, i.tipo_comprovante, i.serie_comprovante, i.num_comprovante, i.total_compra, i.impuesto, i.estado FROM ingreso i INNER JOIN persona p ON i.idprovedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario WHERE idingreso='$idingreso'";
+        $sql = "SELECT i.idingreso, DATE(i.fecha_hora) as fecha, i.idprovedor, p.nombre as proveedor, u.idusuario, u.nombre as usuario, i.tipo_comprovante, i.serie_comprovante, i.num_comprovante, i.total_compra, i.impuesto, i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario WHERE idingreso='$idingreso'";
         return ejecutarConsultaSimpleFila($sql);
     }
 
     //Implementar un metodo para listar los registros
     public function listar() {
-        $sql = "SELECT i.idingreso, DATA(i.fecha_hora) as fecha, i.idprovedor, p.nombre as provedor, u.idusuario, u.nombre as usuario, i.tipo_comprovante, i.serie_comprovante, i.num_comprovante, i.total_compra, i.impuesto, i.estado FROM ingreso i INNER JOIN persona p ON i.idprovedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario ";
+        $sql = "SELECT i.idingreso, DATE(i.fecha_hora) as fecha, i.idproveedor, p.nombre as proveedor, u.idusuario, u.nombre as usuario, i.tipo_comprovante, i.serie_comprovante, i.num_comprovante, i.total_compra, i.impuesto, i.estado FROM ingreso i INNER JOIN persona p ON i.idproveedor=p.idpersona INNER JOIN usuario u ON i.idusuario=u.idusuario ";
         return ejecutarConsulta($sql);
     }
 

@@ -9,6 +9,14 @@ function init() {
 
     $("#formulario").on("submit", function (e) {
         guardaryeditar(e);
+    });
+    
+    
+    
+    //cargamos los itens al select proveedor
+    $.post("../ajax/ingreso.php?op=selectProveedor", function(r){
+        $("#idproveedor").html(r);
+        $("#idproveedor").selectpicker('refresh');
     })
     
 
@@ -32,6 +40,7 @@ function mostrarform(flag) {
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
         $("#btnagregar").hide();
+        listarArticulos();
 
     } else {
         $("#listadoregistros").show();
@@ -64,6 +73,32 @@ function listar() {
         "ajax":
                 {
                     url: '../ajax/ingreso.php?op=listar',
+                    type: "get",
+                    dataType: "json",
+                    error: function (e) {
+                        console.log(e.responseText);
+                    }
+                },
+        "bDestroy": true,
+        "iDisplayLength": 5, //paginacion
+        "order": [[0, "desc"]]
+    }).DataTable();
+}
+
+
+
+
+function listarArticulos() {
+    tabla = $('#tblarticulos').dataTable({
+        "aProcessing": true, //activamos el procesamiento del datatables
+        "aServerSide": true, //paginacion y filtrado realizados por el servidor
+        dom: 'Bfrtip', //definimos los elementos del control de tabla
+        buttons: [
+            
+        ],
+        "ajax":
+                {
+                    url: '../ajax/ingreso.php?op=listarArticulos',
                     type: "get",
                     dataType: "json",
                     error: function (e) {
