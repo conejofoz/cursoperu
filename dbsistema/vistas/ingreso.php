@@ -100,15 +100,15 @@ if($_SESSION['compras']==1){
                           </div>
                             
                             
-                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
+                           <div class="table-responsive col-lg-12 col-md-12 col-sm-12 col-xs-12"> 
                                <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
                                    <thead style="background-color: #A9D0F5">
-                                   <th>Opciones</th>
+                                   <th width="20px">Opciones</th>
                                    <th>Articulo</th>
-                                   <th>Cantidad</th>
-                                   <th>Precio Compra</th>
-                                   <th>Precio Venta</th>
-                                   <th>Subtotal</th>
+                                   <th width="20px">Cantidad</th>
+                                   <th width="20px">Precio Compra</th>
+                                   <th width="20px">Precio Venta</th>
+                                   <th width="20px">Subtotal</th>
                                    </thead>
                                    <tfoot>
                                       <th>Total</th> 
