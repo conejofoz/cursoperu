@@ -9,8 +9,8 @@ require_once '../modelos/Ingreso.php';
 $ingreso = new Ingreso();
 
 $idingreso = isset($_POST["idingreso"]) ? limpiarCadena($_POST["idingreso"]) : "";
-$idprovedor = isset($_POST["idprovedor"]) ? limpiarCadena($_POST["idprovedor"]) : "";
-$idusuario = isset($_POST["idusuario"]) ? limpiarCadena($_POST["idusuario"]) : "";
+$idproveedor = isset($_POST["idproveedor"]) ? limpiarCadena($_POST["idproveedor"]) : "";
+$idusuario = $_SESSION["idusuario"];
 $tipo_comprovante = isset($_POST["tipo_comprovante"]) ? limpiarCadena($_POST["tipo_comprovante"]) : "";
 $serie_comprovante = isset($_POST["serie_comprovante"]) ? limpiarCadena($_POST["serie_comprovante"]) : "";
 $num_comprovante = isset($_POST["num_comprovante"]) ? limpiarCadena($_POST["num_comprovante"]) : "";
@@ -21,7 +21,7 @@ $total_compra = isset($_POST["total_compra"]) ? limpiarCadena($_POST["total_comp
 switch ($_GET["op"]) {
     case 'guardaryeditar':
         if (empty($idingreso)) {
-            $rspta = $ingreso->insertar($idprovedor, $idusuario, $tipo_comprovante, $serie_comprovante, $num_comprovante, $fecha_hora, $impuesto, $total_compra, $_POST['idarticulo'], $_POST['cantidad'], $_POST['precio_compra'], $_POST['precio_venta']);
+            $rspta = $ingreso->insertar($idproveedor, $idusuario, $tipo_comprovante, $serie_comprovante, $num_comprovante, $fecha_hora, $impuesto, $total_compra, $_POST['idarticulo'], $_POST['cantidad'], $_POST['precio_compra'], $_POST['precio_venta']);
             echo $rspta ? "Ingreso registrad" : "Ingreso no se pudo registrar";
         } else {
             
@@ -41,14 +41,15 @@ switch ($_GET["op"]) {
         break;
     case 'listar':
         $rspta = $ingreso->listar();
+       
         //Vamos declarar un array
         $data = Array();
 
         while ($reg = $rspta->fetch_object()) {
             $data[] = array(
-                "0" => ($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar(' . $reg->$idingreso . ')"><i class="fa fa-eye"></i></button>' .
-                ' <button class="btn btn-danger" onclick="anular(' . $reg->$idingreso . ')"><i class="fa fa-close"></i></button>' :
-                '<button class="btn btn-warning" onclick="mostrar(' . $reg->$idingreso . ')"><i class="fa fa-eye"></i></button>',
+                "0" => ($reg->estado == 'Aceptado') ? '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>' .
+                ' <button class="btn btn-danger" onclick="anular('.$reg->idingreso.')"><i class="fa fa-close"></i></button>':
+                '<button class="btn btn-warning" onclick="mostrar('.$reg->idingreso.')"><i class="fa fa-eye"></i></button>',
                 "1" => $reg->fecha,
                 "2" => $reg->proveedor,
                 "3" => $reg->usuario,
@@ -66,6 +67,7 @@ switch ($_GET["op"]) {
             "aaData" => $data
         );
         echo json_encode($results);
+
 
         break;
 

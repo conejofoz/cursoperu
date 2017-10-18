@@ -11,17 +11,36 @@ Class Ingreso {
     }
 
     //Implementamos um medoto para insertar registros
-    public function insertar($idprovedor, $idusuario, $tipo_comprovante, $serie_comprovante, $num_comprovante, $fecha_hora, $impuesto, $total_compra, $idarticulo, $cantidad, $precio_compra, $precio_venta) {
-        $sql = "INSERT INTO ingreso (idprovedor, idusuario, tipo_comprovante, serie_comprovante, num_comprovante, fecha_hora, impuesto, total_compra, estado) "
-                . "VALUES ('$idprovedor', '$idusuario', '$tipo_comprovante', '$serie_comprovante', '$num_comprovante', '$fecha_hora', '$impuesto', '$total_compra', 'Aceptado')";
+    public function insertar($idproveedor, $idusuario, $tipo_comprovante, $serie_comprovante, $num_comprovante, $fecha_hora, $impuesto, $total_compra, 
+            $idarticulo, $cantidad, $precio_compra, $precio_venta) {
+       /* echo $idproveedor .'</br>';
+        echo $idusuario .'</br>';
+        echo $tipo_comprovante .'</br>';
+        echo $serie_comprovante .'</br>';
+        echo $num_comprovante .'</br>';
+        echo $fecha_hora .'</br>';
+        echo $impuesto .'</br>';
+        echo $total_compra .'</br>';
+        echo $idarticulo[0] .'</br>';
+        echo $cantidad[0] .'</br>';
+        echo $precio_compra[0] .'</br>';
+        echo $precio_venta[0] .'</br>';
+        
+        exit();
+        * 
+        */
+        $sql = "INSERT INTO ingreso (idproveedor, idusuario, tipo_comprovante, serie_comprovante, num_comprovante, fecha_hora, impuesto, total_compra, estado) "
+                . "VALUES ('$idproveedor', '$idusuario', '$tipo_comprovante', '$serie_comprovante', '$num_comprovante', '$fecha_hora', '$impuesto', '$total_compra', 'Aceptado')";
         //return ejecutarConsulta($sql);
         $idingresonew = ejecutarConsulta_retornarID($sql);
 
 
         $num_elementos = 0;
         $sw = true;
+
         while ($num_elementos < count($idarticulo)) {
-            $sql_detalle = "INSERT INTO detalle_ingreso(idingreso, idarticulo, cantidad, precio_compra, precio_venta) VALUES('$idingresonew', '$idarticulo[$num_elementos]', '$precio_venta[$num_elementos]', '$precio_compra[$num_elementos]', '$idarticulo[$num_elementos]')";
+            $sql_detalle = "INSERT INTO detalle_ingreso(idingreso, idarticulo, cantidad, precio_compra, precio_venta) "
+                    . "VALUES('$idingresonew', '$idarticulo[$num_elementos]', '$cantidad[$num_elementos]', '$precio_compra[$num_elementos]', '$precio_venta[$num_elementos]')";
             ejecutarConsulta($sql_detalle) or $sw = false;
             $num_elementos = $num_elementos + 1;
         }
