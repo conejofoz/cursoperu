@@ -39,6 +39,40 @@ switch ($_GET["op"]) {
         echo json_encode($rspta);
 
         break;
+    
+    
+    case 'listarDetalle':
+        //recibimos el idingreso
+        $id=$_GET['id'];
+        $rspta = $ingreso->listarDetalle($id);
+        
+        $total = 0;
+        
+        echo '<thead>
+                            <th width="20px">Opciones</th>
+                                   <th>Articulo</th>
+                                   <th width="20px">Cantidad</th>
+                                   <th width="20px">Precio Compra</th>
+                                   <th width="20px">Precio Venta</th>
+                                   <th width="20px">Subtotal</th>
+                          </thead>';
+        while ($reg = $rspta->fetch_object()){
+            echo '<tr class="filas"><td></td><td>'.$reg->nombre.'</td><td>'.$reg->cantidad.'</td><td>'.$reg->precio_compra.'</td><td>'.$reg->precio_venta.'</td><td>'.$reg->precio_compra*$reg->cantidad.'</td></tr>';
+            $total=$total+($reg->precio_compra*$reg->cantidad);
+        }
+        
+        echo '<tfoot>
+                            <th>TOTAL</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th><h4>'.$total.'</h4><input type="hidden" name="total_compra" id="total_compra"></th>
+                          </tfoot>';
+        
+        break;
+    
+    
     case 'listar':
         $rspta = $ingreso->listar();
        

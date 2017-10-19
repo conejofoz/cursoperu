@@ -29,11 +29,24 @@ function limpiar() {
     $("#serie_comprovante").val("");
     $("#num_comprovante").val("");
     $("#fecha_hora").val("");
-    $("#impuesto").val("");
+    $("#impuesto").val("0");
     
     $("#total_compra").val("");
     $(".filas").remove();
     $("#total").html("0");
+    
+    
+    //obtenemos la fecha actual
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    var today = now.getFullYear()+"-"+(month)+"-"+(day);
+    $("#fecha_hora").val(today);
+    
+    
+    //marcamos el primer tipo_documento
+    $("#tipo_comprovante").val("Boleta");
+    $("#tipo_comprovante").selectpicker('refresh');
     
     
 }
@@ -44,13 +57,13 @@ function mostrarform(flag) {
     if (flag) {
         $("#listadoregistros").hide();
         $("#formularioregistros").show();
-        $("#btnGuardar").prop("disabled", false);
+        //$("#btnGuardar").prop("disabled", false);
         $("#btnagregar").hide();
         listarArticulos();
-        $("#guardar").hide();
-        $("#btnGuardar").show();
+        $("#btnGuardar").hide();
         $("#btnCancelar").show();
-        $("#btnAgregar").show();
+        detalles=0;
+        $("#btnAgregarArt").show();
 
     } else {
         $("#listadoregistros").show();
@@ -146,23 +159,31 @@ function guardaryeditar(e) {
 
 
 
-function mostrar(idarticulo){
-    $.post("../ajax/articulo.php?op=mostrar",{idarticulo:idarticulo},function(data, status){
+function mostrar(idingreso){
+    $.post("../ajax/ingreso.php?op=mostrar&id="+idingreso,{idingreso:idingreso},function(data, status){
        data = JSON.parse(data);
        mostrarform(true);
        
-       $("#idcategoria").val(data.idcategoria);
-       $('#idcategoria').selectpicker('refresh');
-       $("#codigo").val(data.codigo);
-       $("#nombre").val(data.nombre);
-       $("#stock").val(data.stock);
-       $("#descripcion").val(data.descripcion);
-       $("#imagenmuestra").show();
-       $("#imagenmuestra").attr("src", "../files/articulos/"+data.imagen);
-       $("#imagenactual").val(data.imagen);
-       $("#idarticulo").val(data.idarticulo);
-       generarbarcode();
-    })
+       $("#idproveedor").val(data.idproveedor);
+       $("#idproveedor").selectpicker('refresh');
+       $("#tipo_comprovante").val(data.tipo_comprovante);
+       $("#tipo_comprovante").selectpicker('refresh');
+       $("#serie_comprovante").val(data.serie_comprovante);
+       $("#num_comprovante").val(data.num_comprovante);
+       $("#fecha_hora").val(data.fecha);
+       $("#impuesto").val(data.impuesto);
+       $("#idingreso").val(data.idingreso);
+       
+       //ocultar y mostrar los botones
+       $("#btnGuardar").hide();
+       $("#btnCancelar").show();
+       $("#btnAgregarArt").hide();
+    });
+    
+    
+    $.post("../ajax/ingreso.php?op=listarDetalle&id="+idingreso,function(r){
+        $("#detalles").html(r);
+    });
 }
 
 
@@ -186,7 +207,8 @@ function anular(idingreso){
 var impuesto=18;
 var cont=0;
 var detalles=0;
-$("#guardar").hide();
+//$("#guardar").hide();
+$("#btnGuardar").hide();
 $("#tipo_comprovante").change(marcarImpuesto);
 
 
@@ -286,9 +308,9 @@ function calcularTotales(){
 
 function evaluar(){
     if(detalles > 0){
-        $("#guardar").show();
+        $("#btnGuardar").show();
     } else {
-        $("#guardar").hide();
+        $("#btnGuardar").hide();
         cont=0;
     }
 }

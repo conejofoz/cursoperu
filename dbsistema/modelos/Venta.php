@@ -47,11 +47,11 @@ Class Ingreso {
     
     
     
-    public function listarDetalle($idingreso){
-        $sql = "SELECT di.idingreso, di.idarticulo, a.nombre, di.cantidad, di.precio_compra, di.precio_venta "
-                . "FROM detalle_ingreso di "
-                . "INNER JOIN articulo a ON di.idarticulo=a.idarticulo "
-                . "WHERE di.idingreso='$idingreso'";
+    public function listarDetalle($idventa){
+        $sql = "SELECT dv.idventa, dv.idarticulo, a.nombre, dv.cantidad, dv.precio_venta, dv.descuento, (dv.cantidad*dv.precio_venta-dv.descuento) as subtotal "
+                . "FROM detalle_venta dv "
+                . "INNER JOIN articulo a ON dv.idarticulo=a.idarticulo "
+                . "WHERE dv.idventa='$idventa'";
         return ejecutarConsulta($sql);
     }
 
