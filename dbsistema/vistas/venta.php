@@ -69,8 +69,8 @@ if ($_SESSION['ventas']==1)
                             <input type="date" class="form-control" name="fecha_hora" id="fecha_hora" required="">
                           </div>
                           <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            <label>Tipo Comprobante(*):</label>
-                            <select name="tipo_comprobante" id="tipo_comprobante" class="form-control selectpicker" required="">
+                            <label>Tipo Comprovante(*):</label>
+                            <select name="tipo_comprovante" id="tipo_comprovante" class="form-control selectpicker" required="">
                                <option value="Boleta">Boleta</option>
                                <option value="Factura">Factura</option>
                                <option value="Ticket">Ticket</option>
@@ -78,11 +78,11 @@ if ($_SESSION['ventas']==1)
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Serie:</label>
-                            <input type="text" class="form-control" name="serie_comprobante" id="serie_comprobante" maxlength="7" placeholder="Serie">
+                            <input type="text" class="form-control" name="serie_comprovante" id="serie_comprovante" maxlength="7" placeholder="Serie">
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Número:</label>
-                            <input type="text" class="form-control" name="num_comprobante" id="num_comprobante" maxlength="10" placeholder="Número" required="">
+                            <input type="text" class="form-control" name="num_comprovante" id="num_comprovante" maxlength="10" placeholder="Número" required="">
                           </div>
                           <div class="form-group col-lg-2 col-md-2 col-sm-6 col-xs-12">
                             <label>Impuesto:</label>

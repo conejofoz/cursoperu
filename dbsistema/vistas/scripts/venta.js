@@ -21,8 +21,8 @@ function limpiar()
 {
 	$("#idcliente").val("");
 	$("#cliente").val("");
-	$("#serie_comprobante").val("");
-	$("#num_comprobante").val("");
+	$("#serie_comprovante").val("");
+	$("#num_comprovante").val("");
 	$("#impuesto").val("0");
 
 	$("#total_venta").val("");
@@ -37,8 +37,8 @@ function limpiar()
     $('#fecha_hora').val(today);
 
     //Marcamos el primer tipo_documento
-    $("#tipo_comprobante").val("Boleta");
-	$("#tipo_comprobante").selectpicker('refresh');
+    $("#tipo_comprovante").val("Boleta");
+	$("#tipo_comprovante").selectpicker('refresh');
 }
 
 //Función mostrar formulario
@@ -163,10 +163,10 @@ function mostrar(idventa)
 
 		$("#idcliente").val(data.idcliente);
 		$("#idcliente").selectpicker('refresh');
-		$("#tipo_comprobante").val(data.tipo_comprobante);
-		$("#tipo_comprobante").selectpicker('refresh');
-		$("#serie_comprobante").val(data.serie_comprobante);
-		$("#num_comprobante").val(data.num_comprobante);
+		$("#tipo_comprovante").val(data.tipo_comprovante);
+		$("#tipo_comprovante").selectpicker('refresh');
+		$("#serie_comprovante").val(data.serie_comprovante);
+		$("#num_comprovante").val(data.num_comprovante);
 		$("#fecha_hora").val(data.fecha);
 		$("#impuesto").val(data.impuesto);
 		$("#idventa").val(data.idventa);
@@ -203,12 +203,12 @@ var cont=0;
 var detalles=0;
 //$("#guardar").hide();
 $("#btnGuardar").hide();
-$("#tipo_comprobante").change(marcarImpuesto);
+$("#tipo_comprovante").change(marcarImpuesto);
 
 function marcarImpuesto()
   {
-  	var tipo_comprobante=$("#tipo_comprobante option:selected").text();
-  	if (tipo_comprobante=='Factura')
+  	var tipo_comprovante=$("#tipo_comprovante option:selected").text();
+  	if (tipo_comprovante=='Factura')
     {
         $("#impuesto").val(impuesto); 
     }
