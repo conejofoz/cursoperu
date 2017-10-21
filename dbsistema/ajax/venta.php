@@ -23,6 +23,7 @@ switch ($_GET["op"]){
 			echo $rspta ? "Venta registrada" : "No se pudieron registrar todos los datos de la venta";
 		}
 		else {
+                    echo $rspta = "Venta id" .$idventa;
 		}
 	break;
 

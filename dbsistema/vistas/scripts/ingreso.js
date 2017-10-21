@@ -34,6 +34,7 @@ function limpiar() {
     $("#total_compra").val("");
     $(".filas").remove();
     $("#total").html("0");
+    $("#idcompra").val(""); //eu
     
     
     //obtenemos la fecha actual

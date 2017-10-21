@@ -28,6 +28,7 @@ function limpiar()
 	$("#total_venta").val("");
 	$(".filas").remove();
 	$("#total").html("0");
+        $("#idventa").val(""); //eu - náo gravava a venda depois de consultar pq ficava o id armazenado
 
 	//Obtenemos la fecha actual
 	var now = new Date();
