@@ -179,6 +179,7 @@ function mostrar(idventa)
 
  	$.post("../ajax/venta.php?op=listarDetalle&id="+idventa,function(r){
 	        $("#detalles").html(r);
+                tabla.ajax.reload(); //eu
 	});	
 }
 
