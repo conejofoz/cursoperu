@@ -10,7 +10,7 @@ define("DB_NAME", "dbsistema");
 define("DB_USERNAME", "root");
 
 //Contrasena del usuario de la base de datos
-define("DB_PASSWORD", "");
+define("DB_PASSWORD", "conejo74");
 
 //definimos la codificacion de los caracteres
 define("DB_ENCODE","utf8");
