@@ -31,11 +31,11 @@ $rspta = $venta->ventacabecera($_GET["id"]);
 $reg = $rspta->fetch_object();
 
 //Establecemos los datos de la empresa
-$empresa = "Soluciones Innovadoras Perú S.A.C.";
+$empresa = "Infinity Group S.A.";
 $documento = "20477157772";
-$direccion = "Chongoyape, José Gálvez 1368";
-$telefono = "931742904";
-$email = "jcarlos.ad7@gmail.com";
+$direccion = "Av. San Blás, 136 - Ciudad del Este Py";
+$telefono = "595 061-512216";
+$email = "infinitygroup.net@gmail.com";
 
 ?>
 <div class="zona_impresion">
@@ -103,13 +103,13 @@ $email = "jcarlos.ad7@gmail.com";
       <td colspan="3">&nbsp;</td>
     </tr>      
     <tr>
-      <td colspan="3" align="center">¡Gracias por su compra!</td>
+      <td colspan="3" align="center">https://www.facebook.com/infinitygroupparaguay/</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">IncanatoIT</td>
+      <td colspan="3" align="center">Infinity</td>
     </tr>
     <tr>
-      <td colspan="3" align="center">Chiclayo - Perú</td>
+      <td colspan="3" align="center">Ciudad del Este - Paraguay</td>
     </tr>
     
 </table>

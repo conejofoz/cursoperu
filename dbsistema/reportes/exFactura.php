@@ -18,11 +18,11 @@ require('Factura.php');
 //Establecemos los datos de la empresa
 $logo = "logo.jpg";
 $ext_logo = "jpg";
-$empresa = "Soluciones Innovadoras Perú S.A.C.";
+$empresa = "Infinity Group S.A.";
 $documento = "20477157772";
-$direccion = "Chongoyape, José Gálvez 1368";
+$direccion = "Av. Sán Blás, 136 - Ciudad del Este";
 $telefono = "931742904";
-$email = "jcarlos.ad7@gmail.com";
+$email = "infinitygroup.net@gmail.com";
 
 //Obtenemos los datos de la cabecera de la venta actual
 require_once "../modelos/Venta.php";
@@ -41,7 +41,7 @@ $pdf->addSociete(utf8_decode($empresa),
                   utf8_decode("Dirección: ").utf8_decode($direccion)."\n".
                   utf8_decode("Teléfono: ").$telefono."\n" .
                   "Email : ".$email,$logo,$ext_logo);
-$pdf->fact_dev( "$regv->tipo_comprobante ", "$regv->serie_comprobante-$regv->num_comprobante" );
+$pdf->fact_dev( "$regv->tipo_comprovante ", "$regv->serie_comprovante-$regv->num_comprovante" );
 $pdf->temporaire( "" );
 $pdf->addDate( $regv->fecha);
 

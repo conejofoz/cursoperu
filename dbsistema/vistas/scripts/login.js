@@ -7,7 +7,7 @@ $("#frmAcceso").on('submit', function(e){
     
     $.post("../ajax/usuario.php?op=verificar", {"logina":logina, "clavea":clavea}, function(data){
         if(data!="null"){ //estava entrando em qualquer usuario pq o null estava sem aspas
-            $(location).attr("href", "categoria.php");
+            $(location).attr("href", "escritorio.php");
         } else {
             bootbox.alert("Usuario y/o Password incorrectos");
         }
