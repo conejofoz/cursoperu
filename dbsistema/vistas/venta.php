@@ -28,7 +28,7 @@ if (!isset($_SESSION["nombre"])) {
                             <div class="panel-body table-responsive" id="listadoregistros">
                                 <table id="tbllistado" class="table table-striped table-bordered table-condensed table-hover">
                                     <thead>
-                                    <th>Opciones</th>
+                                    <th width="106">Opciones</th>
                                     <th>Fecha</th>
                                     <th>Cliente</th>
                                     <th>Usuario</th>
@@ -51,7 +51,7 @@ if (!isset($_SESSION["nombre"])) {
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="panel-body" style="height: 400px;" id="formularioregistros">
+                            <div class="panel-body" id="formularioregistros">
                                 <form name="formulario" id="formulario" method="POST">
                                     <div class="form-group col-lg-8 col-md-8 col-sm-8 col-xs-12">
                                         <label>Cliente(*):</label>
@@ -87,19 +87,19 @@ if (!isset($_SESSION["nombre"])) {
 
                                     <div class="form-group col-lg-3 col-md-3 col-sm-6 col-xs-12">
                                         <a data-toggle="modal" href="#myModal">           
-                                            <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span> Agregar Artículos</button>
+                                            <button id="btnAgregarArt" type="button" class="btn btn-primary"> <span class="fa fa-plus"></span>Consulta de produtos</button>
                                         </a>
                                     </div>
 
-                                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                                        <table id="detalles" class="table table-striped table-bordered table-condensed table-hover">
+                                    <div class="table-responsive col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                        <table id="detalles" class="table table-striped table-bordered table-condensed table-hover table-responsive">
                                             <thead style="background-color:#A9D0F5">
-                                            <th>Opciones</th>
-                                            <th>Artículo</th>
-                                            <th>Cantidad</th>
-                                            <th>Precio Venta</th>
-                                            <th>Descuento</th>
-                                            <th>Subtotal</th>
+                                            <th width="10">Opções</th>
+                                            <th>Produto</th>
+                                            <th width="10">Quantidade</th>
+                                            <th width="10">Preço</th>
+                                            <th width="10">Desconto</th>
+                                            <th width="10">Sub-Total</th>
                                             </thead>
                                             <tfoot>
                                             <th>TOTAL</th>
@@ -107,7 +107,7 @@ if (!isset($_SESSION["nombre"])) {
                                             <th></th>
                                             <th></th>
                                             <th></th>
-                                            <th><h4 id="total">S/. 0.00</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
+                                            <th><h4 id="total">$ 0,00</h4><input type="hidden" name="total_venta" id="total_venta"></th> 
                                             </tfoot>
                                             <tbody>
 
